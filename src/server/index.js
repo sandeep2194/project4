@@ -25,5 +25,5 @@ app.listen(8081, function() {
 })
 
 app.get('/classify', function(req, res) {
-    res.send(get_classification)
+    res.send(get_classification(req.body.url))
 })
