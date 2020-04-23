@@ -1,18 +1,24 @@
 var path = require('path')
 const express = require('express')
-const mockAPIResponse = require('./classify.js')
 var aylien = require("aylien_textapi");
+const cors = require('cors')
+var bodyParser = require('body-parser')
 const dotenv = require('dotenv');
 dotenv.config();
-
-console.log(`Your API key is ${process.env.API_KEY}`);
 
 const app = express()
 
 app.use(express.static('dist'))
-
+app.use(cors())
+app.use(bodyParser.json())
 console.log(__dirname)
 
+let recieved_data = {};
+
+const textapi = new aylien({
+    application_id: process.env.API_ID,
+    application_key: process.env.API_KEY
+});
 
 app.get('/', function(req, res) {
     // res.sendFile('dist/index.html')
@@ -24,6 +30,14 @@ app.listen(8081, function() {
     console.log('Example app listening on port 8081!')
 })
 
-app.get('/classify', function(req, res) {
-    res.send(get_classification(req.body.url))
+app.post('/classify', function(req, res) {
+    textapi.classify({
+        url: req.body.link
+    }, function(error, response) {
+        if (error === null) {
+            response['categories'].forEach(function(c) {
+                console.log(c);
+            });
+        } else console.log(error);
+    });
 })
