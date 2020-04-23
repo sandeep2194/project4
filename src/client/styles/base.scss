@@ -1,8 +1,12 @@
+$main-font: 'Open Sans',
+sans-serif;
+$main-f-size: 12px;
 body {
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: minmax(50px, auto);
     grid-template-areas: 'hd' 'main' 'ft';
+    font: 100% $main-font;
     main {
         grid-area: 'main';
     }
