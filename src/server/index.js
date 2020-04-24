@@ -13,7 +13,8 @@ app.use(cors())
 app.use(bodyParser.json())
 console.log(__dirname)
 
-let recieved_data = {};
+let recieved_link = '';
+let got_details = {};
 
 const textapi = new aylien({
     application_id: process.env.API_ID,
@@ -31,13 +32,15 @@ app.listen(8081, function() {
 })
 
 app.post('/classify', function(req, res) {
-    textapi.classify({
-        url: req.body.link
-    }, function(error, response) {
-        if (error === null) {
-            response['categories'].forEach(function(c) {
-                console.log(c);
-            });
-        } else console.log(error);
-    });
+    recieved_link = req.body.link;
+    textapi.classify({ url: recieved_link }, (error, response) => {
+        got_details['first'] = response;
+        console.log(got_details);
+    })
+    res.end();
+})
+
+app.get('/getdata', function(req, res) {
+    // res.sendFile('dist/index.html')
+    res.send(got_details);
 })

@@ -14,12 +14,34 @@ function handleSubmit(event) {
             },
             body: JSON.stringify(data) // body data type must match "Content-Type" header
         });
-        return response.json(); // parses JSON response into native JavaScript objects
+        // parses JSON response into native JavaScript objects
 
     }
 
     postData('http://localhost:8081/classify', { link: testlink })
-    console.log('sent form')
+        .then(() => {
+            updateUi();
+        })
 }
+
+function updateUi() {
+    let data = {};
+    getData('http://localhost:8081/getdata')
+        .then((res) => {
+            console.log(res);
+        })
+
+}
+
+
+const getData = async function getData(url = '') {
+    const response = await fetch(url)
+        .then((response) => {
+            return response.json();
+        })
+}
+
+
+
 
 export { handleSubmit }
