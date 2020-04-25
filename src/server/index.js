@@ -34,7 +34,7 @@ app.listen(8081, function() {
 app.post('/classify', function(req, res) {
     recieved_link = req.body.link;
     textapi.classify({ url: recieved_link }, (error, response) => {
-        got_details['first'] = response;
+        got_details = response;
         console.log(got_details);
     })
     res.end();
@@ -43,4 +43,5 @@ app.post('/classify', function(req, res) {
 app.get('/getdata', function(req, res) {
     // res.sendFile('dist/index.html')
     res.send(got_details);
+    got_details = {};
 })
