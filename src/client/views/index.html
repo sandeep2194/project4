@@ -22,14 +22,24 @@
     <main>
         <section>
             <form class="" onsubmit="return Client.handleSubmit(event)">
-                <input id="testlink" type="url" name="input" value="" onblur="onBlur()" placeholder="add the url you want feedback on">
+                <input id="testlink" type="url" required name="input" value="" placeholder="add the url you want feedback on">
                 <input type="submit" name="" value="submit" onclick="return Client.handleSubmit(event)" onsubmit="return Client.handleSubmit(event)">
             </form>
             <section>
-
                 <section>
-                    <strong>Form Results:</strong>
-                    <div id="results"></div>
+                    <div id="error">
+                    </div>
+                    <div id="loader">
+                        Loading...
+                    </div>
+                    <div id="results">
+                        <h3>Article</h3>
+                        <p id="link_text"></p>
+                        <h3>Language of Article</h3>
+                        <p id="link_ln"></p>
+                        <h3>Category</h3>
+                        <p id="category"></p>
+                    </div>
                 </section>
     </main>
 
@@ -37,9 +47,9 @@
         <p>This is a footer</p>
     </footer>
     <script>
-        // Check that service workers are supported
+        Check that service workers are supported
         if ('serviceWorker' in navigator) {
-            // Use the window load event to keep the page load performant
+            Use the window load event to keep the page load performant
             window.addEventListener('load', () => {
                 navigator.serviceWorker.register('/service-worker.js');
             });

@@ -10,3 +10,37 @@ form {
         margin: 10px 0;
     }
 }
+
+#results {
+    display: none;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    align-content: flex-start;
+    p {
+        line-height: normal;
+        font-size: 1em;
+        margin-bottom: 15px;
+    }
+    h3 {
+        font-weight: 600;
+        font-size: 1.3em;
+        margin-bottom: 15px;
+    }
+}
+
+#loader {
+    font-size: 2em;
+    display: none;
+    text-align: center;
+    margin: 10px;
+    color: blue;
+}
+
+#error {
+    font-size: 2em;
+    display: none;
+    text-align: center;
+    margin: 10px;
+    color: blue;
+}
