@@ -26,8 +26,19 @@ const error_handle = function(error_str) {
     error_div.style.display = 'block';
 }
 
+const backend_callback_url_switch = function(url) {
+    if (location.port === '8080') {
+        url = 'http://localhost:8081' + url
+        return url
+    } else {
+        return url
+    }
+}
+
 export {
     text_truncate,
     loader,
-    error_handle
+    error_handle,
+    backend_callback_url_switch
+
 }

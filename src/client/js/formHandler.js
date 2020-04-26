@@ -2,6 +2,7 @@ import { link_checker } from "./link_checker";
 import { postData, updateUI } from "./main_fuctions";
 import { loader } from "./helpers";
 import { error_handle } from "./helpers";
+import { backend_callback_url_switch } from "./helpers";
 
 function handleSubmit(event) {
     event.preventDefault()
@@ -14,13 +15,13 @@ function handleSubmit(event) {
     document.getElementById('error').innerHTML = " ";
 
     if (link_checker(testlink_value)) {
-        postData('http://localhost:8081/classify', { link: testlink_value })
+        postData(backend_callback_url_switch('/classify'), { link: testlink_value })
             .then(() => {
                 loader("start");
                 setTimeout(() => {
                     updateUI()
                     loader();
-                }, 2500);
+                }, 3500);
             }).then(() => {
                 clearTimeout();
             })

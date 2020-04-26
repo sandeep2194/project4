@@ -1,5 +1,6 @@
 import { error_handle } from "./helpers";
 import { text_truncate } from "./helpers";
+import { backend_callback_url_switch } from "./helpers";
 
 const postData = async(url = " ", data = {}) => {
     const response = await fetch(url, {
@@ -24,7 +25,7 @@ const postData = async(url = " ", data = {}) => {
 
 const updateUI = async() => {
 
-    const request = await fetch('http://localhost:8081/getdata');
+    const request = await fetch(backend_callback_url_switch('/getdata'));
     try {
         const allData = await request.json();
         if (allData === null) {
