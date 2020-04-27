@@ -11,7 +11,6 @@ const app = express()
 app.use(express.static('dist'))
 app.use(cors())
 app.use(bodyParser.json())
-console.log(__dirname)
 
 let recieved_link = '';
 let got_details = {};
@@ -28,14 +27,13 @@ app.get('/', function(req, res) {
 
 // designates what port the app will listen to for incoming requests
 app.listen(8081, function() {
-    console.log('Example app listening on port 8081!')
+    console.log('App listening on port 8081!')
 })
 
 app.post('/classify', function(req, res) {
     recieved_link = req.body.link;
     textapi.classify({ url: recieved_link }, (error, response) => {
         got_details = response;
-        console.log(got_details);
     })
     res.end();
 })
@@ -44,4 +42,5 @@ app.get('/getdata', function(req, res) {
     // res.sendFile('dist/index.html')
     res.send(got_details);
     got_details = {};
+    res.end()
 })
