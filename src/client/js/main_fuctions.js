@@ -13,9 +13,8 @@ const postData = async(url = " ", data = {}) => {
     });
 
     try {
-        const data = response;
-        return data
-
+        const content = await response.json();
+        console.log(content)
     } catch (e) {
         console.log("error", e);
         // appropriately handle the error

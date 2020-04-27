@@ -1,8 +1,8 @@
-const path = require('path')
+var path = require('path')
 const express = require('express')
-const aylien = require('aylien_textapi');
+var aylien = require("aylien_textapi");
 const cors = require('cors')
-const bodyParser = require('body-parser')
+var bodyParser = require('body-parser')
 const dotenv = require('dotenv');
 dotenv.config();
 
@@ -34,12 +34,8 @@ app.listen(8081, function() {
 app.post('/classify', function(req, res) {
     recieved_link = req.body.link;
     textapi.classify({ url: recieved_link }, (error, response) => {
-        if (response == null) {
-            got_details = "null"
-        } else {
-            got_details = response;
-            console.log(got_details);
-        }
+        got_details = response;
+        console.log(got_details);
     })
     res.end();
 })
@@ -47,5 +43,5 @@ app.post('/classify', function(req, res) {
 app.get('/getdata', function(req, res) {
     // res.sendFile('dist/index.html')
     res.send(got_details);
-
+    got_details = {};
 })

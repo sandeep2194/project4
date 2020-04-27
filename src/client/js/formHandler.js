@@ -21,7 +21,7 @@ function handleSubmit(event) {
                 setTimeout(() => {
                     updateUI()
                     loader();
-                }, 3500);
+                }, 3000);
             }).then(() => {
                 clearTimeout();
             })
