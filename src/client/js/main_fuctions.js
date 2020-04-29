@@ -26,17 +26,15 @@ const updateUI = async() => {
     const request = await fetch(backend_callback_url_switch('/getdata'));
     try {
         const allData = await request.json();
-        if (allData === null) {
-            error_handle("sorry not able to get data for this URL")
-        } else {
-            document.getElementById('results').style.display = 'flex';
-            document.getElementById('link_text').innerHTML = text_truncate(allData.text, 500);
-            document.getElementById('link_ln').innerHTML = allData.language;
-            document.getElementById('category').innerHTML = allData.categories[0].label;
-            clearTimeout();
-        }
+        document.getElementById('results').style.display = 'flex';
+        document.getElementById('link_text').innerHTML = text_truncate(allData.text, 500);
+        document.getElementById('link_ln').innerHTML = allData.language;
+        document.getElementById('category').innerHTML = allData.categories[0].label;
+        clearTimeout();
+
     } catch (e) {
         console.log('erroe', e);
+        error_handle("sorry something went wrong")
     }
 };
 

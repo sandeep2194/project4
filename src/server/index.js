@@ -35,6 +35,7 @@ app.post('/classify', function(req, res) {
     textapi.classify({ url: recieved_link }, (error, response) => {
         got_details = response;
     })
+    res.send({})
     res.end();
 })
 
@@ -42,5 +43,4 @@ app.get('/getdata', function(req, res) {
     // res.sendFile('dist/index.html')
     res.send(got_details);
     got_details = {};
-    res.end()
 })

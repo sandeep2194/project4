@@ -27,12 +27,7 @@ const error_handle = function(error_str) {
 }
 
 const backend_callback_url_switch = function(url) {
-    if (location.port === '8080') {
-        url = 'http://localhost:8081' + url
-        return url
-    } else {
-        return url
-    }
+    return "8080" === location.port ? "http://localhost:8081" + url : url
 }
 
 export {
